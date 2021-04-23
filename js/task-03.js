@@ -16,43 +16,56 @@ const images = [
   },
 ];
 
+
+
 const galleryEl = document.querySelector('#gallery');
+galleryEl.classList.add('gallery-list');
 console.log(galleryEl);
 
-const makeElementsOfGalery = ({ url, alt }) => {
-  const itemEl = document.createElement('li');
-  itemEl.classList.add('gallery-item');
+const makeElementOfImagesRows = ({
+  url,
+  alt
+}) => {
+  return`
+  <li class="gallery-item">
+    <img class="gallery-image" width = "340" src="${url}" alt="${alt}"></img>
+  </li>
+  `;
+};
 
-  const imageEl = document.createElement('img');
-  imageEl.classList.add('gallery-image');
-  imageEl.width = 640;
-  imageEl.src = `${url}`;
-  imageEl.alt = `${alt}`;
+  // console.log(makeElementOfImagesRows(images[0]));
 
-  itemEl.appendChild(imageEl);
-  return itemEl;
-  galleryEl.appendChild(itemEl);
-}
-// console.log(makeElementsOfGalery(images[0]));
+const elementRows = images.map(makeElementOfImagesRows).join('');
 
-const elements = images.map(makeElementsOfGalery);
-console.log(elements);
-galleryEl.append(...elements);
+galleryEl.insertAdjacentHTML('afterbegin', elementRows);
 
+console.log(elementRows);
 
 
 
 
-// const imageCreate = ({
-//   url,
-//   alt
-// }) => {
-//   return
-//   <li>
-//     <img src="${url}" alt="${alt}"></img>
-//   </li>
-//   ;
-// };
 
-// console.log(imageCreate(images[0]));
-// galleryEl.insertAdjacentHTML('beforeend', );
+                  // #2
+
+// const galleryEl = document.querySelector('#gallery');
+// console.log(galleryEl);
+
+// const makeElementsOfGalery = ({ url, alt }) => {
+//   const itemEl = document.createElement('li');
+//   itemEl.classList.add('gallery-item');
+
+//   const imageEl = document.createElement('img');
+//   imageEl.classList.add('gallery-image');
+//   imageEl.width = 640;
+//   imageEl.src = `${url}`;
+//   imageEl.alt = `${alt}`;
+
+//   itemEl.appendChild(imageEl);
+//   return itemEl;
+//   galleryEl.appendChild(itemEl);
+// }
+//           // console.log(makeElementsOfGalery(images[0]));
+
+// const elements = images.map(makeElementsOfGalery);
+// console.log(elements);
+// galleryEl.append(...elements);
